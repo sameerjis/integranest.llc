@@ -9,11 +9,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,500,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+(function(){try{var t=localStorage.getItem('integranest-theme');document.documentElement.dataset.theme=t||'light';}catch(e){document.documentElement.dataset.theme='light';}})();
+</script>
 <style>
 :root{
+  --bg:#ffffff; --bg2:#f4f6f8; --surface:#ffffff; --line:#e2e7ed;
+  --text:#131a22; --text2:#57626e; --accent:#b97a1c; --accent2:#96600f;
+  --ok:#1d9d6c;
+  --navbg:rgba(255,255,255,.86); --linehover:#c2ccd5;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
   --bg:#0b0e11; --bg2:#11151a; --surface:#161b21; --line:#232a33;
   --text:#eef1f4; --text2:#9aa7b2; --accent:#e8a33d; --accent2:#f2c078;
   --ok:#5dd39e;
+  --navbg:rgba(11,14,17,.82); --linehover:#3a4450;
+  color-scheme:dark;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -25,7 +37,7 @@ body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-s
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 
 /* nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(12px);background:rgba(11,14,17,.82);border-bottom:1px solid var(--line)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(12px);background:var(--navbg);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
 .logo{font-family:'Clash Display',sans-serif;font-weight:600;font-size:20px;letter-spacing:.01em;color:var(--text);text-decoration:none}
 .logo span{color:var(--accent)}
@@ -36,6 +48,8 @@ nav a.lnk:hover{color:var(--text)}
 .btn:hover{background:var(--accent2);transform:translateY(-1px)}
 .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
 .btn.ghost:hover{border-color:var(--accent);color:var(--accent2)}
+.theme-toggle{background:transparent;border:1px solid var(--line);color:var(--text2);border-radius:999px;padding:7px 13px;font-size:13px;font-family:'IBM Plex Mono',monospace;cursor:pointer;transition:color .18s,border-color .18s}
+.theme-toggle:hover{color:var(--text);border-color:var(--accent)}
 
 /* hero */
 header{padding:150px 0 90px;position:relative}
@@ -61,7 +75,7 @@ h2{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(26px,3
 /* skus */
 .skus{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
 .sku{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px 24px;position:relative;transition:transform .2s,border-color .2s;display:flex;flex-direction:column}
-.sku:hover{transform:translateY(-3px);border-color:#3a4450}
+.sku:hover{transform:translateY(-3px);border-color:var(--linehover)}
 .sku .tag{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
 .sku h3{font-family:'Clash Display',sans-serif;font-weight:600;font-size:21px;margin-bottom:10px}
 .sku p{color:var(--text2);font-size:15px;flex:1}
@@ -118,6 +132,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <a class="lnk" href="#services">Services</a>
       <a class="lnk" href="#process">How we work</a>
       <a class="lnk" href="#about">About</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">☾ Dark</button>
       <a class="btn" href="mailto:hello@integranest.llc">hello@integranest.llc</a>
     </div>
   </div>
@@ -285,5 +300,18 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   </div>
 </footer>
 
+<script>
+(function(){
+  var btn=document.getElementById('themeToggle');
+  function label(){btn.textContent=document.documentElement.dataset.theme==='dark'?'☀ Light':'☾ Dark';}
+  label();
+  btn.addEventListener('click',function(){
+    var next=document.documentElement.dataset.theme==='dark'?'light':'dark';
+    document.documentElement.dataset.theme=next;
+    try{localStorage.setItem('integranest-theme',next);}catch(e){}
+    label();
+  });
+})();
+</script>
 </body>
 </html>
