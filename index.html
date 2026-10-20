@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IntegraNest — Compliance & AI infrastructure for FinTech and HealthTech</title>
-<meta name="description" content="SOC 2 readiness, HIPAA compliance automation, AI integration, and fractional CTO for FinTech and HealthTech companies. One senior engineer, no handoffs.">
+<meta name="description" content="AI agent data, access, and deployment audits, SOC 2 readiness, HIPAA compliance automation, AI integration, and fractional CTO for FinTech and HealthTech companies. One senior engineer, no handoffs.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,500,700&display=swap" rel="stylesheet">
@@ -68,6 +68,13 @@ h2{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(26px,3
 .sku .price{margin-top:20px;padding-top:18px;border-top:1px dashed var(--line)}
 .sku .price b{font-family:'IBM Plex Mono',monospace;font-size:19px;color:var(--text);font-weight:500}
 .sku .price span{display:block;font-size:12.5px;color:var(--text2);margin-top:3px}
+.group-label{font-family:'Clash Display',sans-serif;font-weight:600;font-size:20px;margin-bottom:4px}
+.group-note{color:var(--text2);font-size:15px;max-width:640px;margin-bottom:22px}
+.skus + .group-label{margin-top:46px}
+.sku ul.gets{list-style:none;margin-top:14px}
+.sku ul.gets li{font-size:13.5px;color:var(--text2);padding:6px 0;border-bottom:1px dashed var(--line)}
+.sku ul.gets li:last-child{border-bottom:none}
+.sku ul.gets li::before{content:"→";color:var(--accent);margin-right:9px;font-family:'IBM Plex Mono',monospace}
 
 /* process */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;counter-reset:st}
@@ -138,6 +145,48 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <div class="wrap">
     <h2>Productized services, real prices</h2>
     <p class="lead">No discovery-call-to-proposal pipeline. You know what it costs before we talk.</p>
+    <div class="group-label">Agent services</div>
+    <p class="group-note">For companies putting AI agents into production. Every engagement passes one test: if a new model drops next month, does this get better or worse? These get better.</p>
+    <div class="skus">
+      <div class="sku">
+        <div class="tag">New · Data</div>
+        <h3>Agent-Ready Data Sprint</h3>
+        <p>Your agents are not failing on the model — they are failing on your data: five versions of the same customer, PDFs nobody can search. This sprint makes internal data clean, governed, and ready for agents to use.</p>
+        <ul class="gets">
+          <li>Data estate audit — duplicates, stale records, unsearchable docs</li>
+          <li>Dedupe &amp; normalization to one trusted version</li>
+          <li>MCP-ready layer with explicit access controls</li>
+          <li>Data quality report &amp; agent-readiness scorecard</li>
+        </ul>
+        <div class="price"><b>from $5,800</b><span>3-week sprint · fixed scope</span></div>
+      </div>
+      <div class="sku">
+        <div class="tag">New · Security</div>
+        <h3>Agent Access Audit</h3>
+        <p>Every agent is a new door into your company — API keys in prompts, write access nobody reviewed. This audit maps what each agent can touch and closes the gaps before an auditor or an attacker finds them.</p>
+        <ul class="gets">
+          <li>Inventory of every agent and what it can reach</li>
+          <li>Least-privilege gap analysis</li>
+          <li>Credential &amp; prompt-injection exposure review</li>
+          <li>SOC 2-ready remediation roadmap</li>
+        </ul>
+        <div class="price"><b>from $4,200</b><span>2-week audit · fixed scope</span></div>
+      </div>
+      <div class="sku">
+        <div class="tag">New · Risk</div>
+        <h3>Agent Deployment Audit</h3>
+        <p>When agent insurance arrives, insurers will demand an audit first. This review documents your guardrails, human review, and eval coverage now — so you are insurable and board-ready later.</p>
+        <ul class="gets">
+          <li>Deployment &amp; failure-mode review</li>
+          <li>Adversarial evals from real failure scenarios</li>
+          <li>Human-in-the-loop &amp; escalation design review</li>
+          <li>Insurer- and board-ready risk register</li>
+        </ul>
+        <div class="price"><b>from $4,600</b><span>2–3 week audit · fixed scope</span></div>
+      </div>
+    </div>
+    <div class="group-label">Compliance &amp; advisory</div>
+    <p class="group-note">The original IntegraNest sprints — audit readiness and senior engineering cover for FinTech and HealthTech teams.</p>
     <div class="skus">
       <div class="sku">
         <div class="tag">Most requested</div>
