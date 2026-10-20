@@ -50,6 +50,8 @@ nav a.lnk:hover{color:var(--text)}
 .btn.ghost:hover{border-color:var(--accent);color:var(--accent2)}
 .theme-toggle{background:transparent;border:1px solid var(--line);color:var(--text2);border-radius:999px;padding:7px 13px;font-size:13px;font-family:'IBM Plex Mono',monospace;cursor:pointer;transition:color .18s,border-color .18s}
 .theme-toggle:hover{color:var(--text);border-color:var(--accent)}
+.theme-toggle{display:inline-flex;align-items:center;gap:6px}
+.theme-toggle .tt-icon{font-size:14px;line-height:1}
 
 /* hero */
 header{padding:150px 0 90px;position:relative}
@@ -73,7 +75,7 @@ h2{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(26px,3
 .lead{color:var(--text2);max-width:640px;margin-bottom:44px;font-size:17px}
 
 /* skus */
-.skus{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.skus{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:18px}
 .sku{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px 24px;position:relative;transition:transform .2s,border-color .2s;display:flex;flex-direction:column}
 .sku:hover{transform:translateY(-3px);border-color:var(--linehover)}
 .sku .tag{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
@@ -91,7 +93,7 @@ h2{font-family:'Clash Display',sans-serif;font-weight:600;font-size:clamp(26px,3
 .sku ul.gets li::before{content:"→";color:var(--accent);margin-right:9px;font-family:'IBM Plex Mono',monospace}
 
 /* process */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;counter-reset:st}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:18px;counter-reset:st}
 .step{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:24px}
 .step::before{counter-increment:st;content:"0" counter(st);font-family:'IBM Plex Mono',monospace;color:var(--accent);font-size:14px;display:block;margin-bottom:12px}
 .step h3{font-size:17px;font-weight:600;margin-bottom:8px}
@@ -117,9 +119,21 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 @media(max-width:820px){
   nav .links a.lnk{display:none}
+  nav .wrap{gap:10px}
+  nav .links{gap:10px}
+  .theme-toggle{padding:8px 10px}
+  .theme-toggle .tt-label{display:none}
+  nav .btn{padding:9px 13px;font-size:13px}
   header{padding:120px 0 60px}
   .about-grid{grid-template-columns:1fr}
   #contact .box{padding:34px 24px}
+  .meta-strip{gap:22px}
+}
+@media(max-width:480px){
+  section{padding:60px 0}
+  .wrap{padding:0 18px}
+  .logo{font-size:18px}
+  nav .btn{font-size:12.5px;padding:8px 11px}
 }
 </style>
 </head>
@@ -132,7 +146,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <a class="lnk" href="#services">Services</a>
       <a class="lnk" href="#process">How we work</a>
       <a class="lnk" href="#about">About</a>
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">☾ Dark</button>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme"><span class="tt-icon">☾</span><span class="tt-label">Dark</span></button>
       <a class="btn" href="mailto:hello@integranest.llc">hello@integranest.llc</a>
     </div>
   </div>
@@ -303,7 +317,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <script>
 (function(){
   var btn=document.getElementById('themeToggle');
-  function label(){btn.textContent=document.documentElement.dataset.theme==='dark'?'☀ Light':'☾ Dark';}
+  function label(){
+    var dark=document.documentElement.dataset.theme==='dark';
+    btn.querySelector('.tt-icon').textContent=dark?'☀':'☾';
+    btn.querySelector('.tt-label').textContent=dark?'Light':'Dark';
+  }
   label();
   btn.addEventListener('click',function(){
     var next=document.documentElement.dataset.theme==='dark'?'light':'dark';
