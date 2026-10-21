@@ -52,6 +52,9 @@ nav a.lnk:hover{color:var(--text)}
 .theme-toggle:hover{color:var(--text);border-color:var(--accent)}
 .theme-toggle{display:inline-flex;align-items:center;gap:6px}
 .theme-toggle .tt-icon{font-size:14px;line-height:1}
+.to-top{position:fixed;right:20px;bottom:20px;z-index:90;width:44px;height:44px;border-radius:50%;background:var(--surface);border:1px solid var(--line);color:var(--text2);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .25s,transform .25s,color .18s,border-color .18s;box-shadow:0 4px 16px rgba(0,0,0,.12)}
+.to-top:hover{color:var(--accent);border-color:var(--accent)}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
 
 /* hero */
 header{padding:150px 0 90px;position:relative}
@@ -314,6 +317,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   </div>
 </footer>
 
+<button class="to-top" id="toTop" type="button" aria-label="Back to top"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
 <script>
 (function(){
   var btn=document.getElementById('themeToggle');
@@ -328,6 +333,16 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     document.documentElement.dataset.theme=next;
     try{localStorage.setItem('integranest-theme',next);}catch(e){}
     label();
+  });
+})();
+(function(){
+  var btn=document.getElementById('toTop');
+  function onScroll(){btn.classList.toggle('show',window.scrollY>600);}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  btn.addEventListener('click',function(){
+    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});
   });
 })();
 </script>
